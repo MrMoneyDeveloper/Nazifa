@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Valentine Story</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="overlay-open">
+  <div id="bootLoader" class="boot-loader" role="status" aria-live="polite">
+    <div class="boot-loader-panel text-center">
+      <p class="boot-loader-kicker mb-2">Preparing your slideshow</p>
+      <h2 class="boot-loader-title mb-3">Loading the experience...</h2>
+      <p id="bootLoaderStatus" class="boot-loader-status mb-3">Loading memories from top to bottom...</p>
+      <div class="boot-loader-progress" aria-hidden="true">
+        <span id="bootLoaderBar"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ambient-layer" aria-hidden="true"></div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="assets/sounds/Past%20Won%27t%20Leave%20My%20Bed.mp3" type="audio/mpeg" />
+  </audio>
+
+  <main id="story" class="story">
+    <section id="top" class="scene scene-hero d-flex align-items-center text-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-xl-8">
+            <p class="hero-kicker mb-3">A little scrolling movie</p>
+            <h1 class="hero-title mb-3">For You, Always</h1>
+            <p class="hero-subtitle mb-4">46 scenes, one honest feeling.</p>
+            <p class="hero-note mb-0">I know you do not really celebrate, but I made this anyway - just because.</p>
+            <div class="hero-start-wrap mt-4">
+              <button id="heroStartButton" class="btn btn-start btn-hero-start" type="button">Start Slideshow</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="sceneTrack" aria-label="Photo story scenes"></div>
+
+    <section id="outro" class="scene scene-outro d-flex align-items-center">
+      <div class="container text-center">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <p class="outro-kicker mb-2">End Credits</p>
+            <h2 class="outro-title mb-3">Happy Valentine&#39;s Day</h2>
+            <p class="outro-text mb-4">This is me saying: you matter. Thank you for being you - fully.</p>
+            <div class="outro-actions d-flex justify-content-center gap-3 flex-wrap">
+              <button id="replayMusic" class="btn btn-glow" type="button">Replay Music</button>
+              <button id="backToTop" class="btn btn-glow btn-ghost" type="button">Back to Top</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="music-control" id="musicControl" aria-label="Slideshow controls">
+    <button id="musicToggle" class="btn btn-control" type="button" aria-label="Pause music">Pause</button>
+    <button id="restartSlideshow" class="btn btn-control btn-ghost" type="button" aria-label="Restart slideshow">Restart slideshow</button>
+    <button id="exitSlideshow" class="btn btn-control btn-ghost" type="button" aria-label="Exit slideshow">Exit</button>
+    <label class="visually-hidden" for="playbackSpeed">Playback speed</label>
+    <select id="playbackSpeed" class="control-speed" aria-label="Playback speed">
+      <option value="0.75" selected>1x</option>
+      <option value="1">1.25x</option>
+      <option value="1.25">1.5x</option>
+    </select>
+  </div>
+
+  <div id="endOverlay" class="experience-overlay" hidden>
+    <div class="overlay-panel text-center">
+      <h2 class="overlay-title mb-2">End scene</h2>
+      <p class="overlay-subtitle mb-4">Always take care. Always.</p>
+      <div class="overlay-actions d-flex justify-content-center gap-2 flex-wrap">
+        <button id="endRestart" class="btn btn-start" type="button">Restart</button>
+        <button id="endReplayMusic" class="btn btn-glow btn-ghost" type="button">Replay Music</button>
+        <button id="endExit" class="btn btn-glow btn-ghost" type="button">Exit Slideshow</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/vendor/canvas-confetti.min.js"></script>
+  <script src="assets/js/vendor/anime.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+
