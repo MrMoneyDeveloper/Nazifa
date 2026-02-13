@@ -1,9 +1,10 @@
 ﻿(() => {
-  const BUILD_ID = "20260213r3";
+  const BUILD_ID = "20260213r4";
   const TOTAL_PHOTOS = 46;
   const BASE_MS = 3800;
   const SPECIAL_MS = 5200;
   const MIN_BOOT_MS = 7000;
+  const SPEED_OFFSET = 0.1;
   const SOUND_PREF_KEY = "valentine_sound_pref";
   const STARTED_KEY = "valentine_started";
   const BLOCKED_KEYS = new Set(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "PageUp", "PageDown", "Home", "End", " ", "Spacebar"]);
@@ -711,7 +712,8 @@
     if (state !== "playing") return;
 
     const current = scenes[active];
-    const speed = Number.parseFloat(speedSel ? speedSel.value : "1") || 1;
+    const selectedSpeed = Number.parseFloat(speedSel ? speedSel.value : "1") || 1;
+    const speed = Math.max(0.2, selectedSpeed - SPEED_OFFSET);
     const ms = Math.max(1800, Math.round(((current ? current.durationMs : BASE_MS) / speed)));
 
     timer = window.setTimeout(async () => {

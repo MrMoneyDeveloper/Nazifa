@@ -381,12 +381,12 @@ body.player-mode #sceneTrack .scene.is-next {
 }
 
 .scene-gallery-3 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
 }
 
 .scene-gallery-3 .scene-card:first-child {
-  grid-column: 1 / -1;
+  grid-column: auto;
 }
 
 .scene-card {
@@ -852,17 +852,13 @@ body.reduced-motion .outro-actions {
 
 @media (max-width: 575.98px) {
   .scene-gallery-2 {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr);
   }
 
   .scene-gallery-3 {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, minmax(0, 1fr));
-  }
-
-  .scene-gallery-3 .scene-card:first-child {
-    grid-column: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr);
   }
 }
 
