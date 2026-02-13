@@ -1,4 +1,5 @@
 ﻿(() => {
+  const BUILD_ID = "20260213r3";
   const TOTAL_PHOTOS = 46;
   const BASE_MS = 3800;
   const SPECIAL_MS = 5200;
@@ -13,9 +14,9 @@
     "Just a little “I appreciate you” in my own way.",
     "You’re beautiful — effortlessly.",
     "Your presence feels like peace.",
-    "Did you eat? 🙂",
-    "Take care, sucker 😌",
-    "Okay… bye bye 😄",
+    "Did you eat? ??",
+    "Take care, sucker ??",
+    "Okay… bye bye ??",
     "Still a vampire… and somehow still adorable.",
     "Night owl energy, always.",
     "You’re rare. That’s the whole point.",
@@ -53,7 +54,7 @@
     "This is me saying: you matter.",
     "Happy Valentine’s Day (again)… because you’re worth repeating.",
     "One more thing… you’re loved.",
-    "End scene: Always take care. Always. ❤️"
+    "End scene: Always take care. Always. ??"
   ];
 
   const CHAPTERS = {
@@ -123,6 +124,8 @@
   let bootReady = false;
   let started = localStorage.getItem(STARTED_KEY) === "true";
   const usedEffects = new Set();
+
+  console.info("[Valentine] build", BUILD_ID);
 
   if (reducedMotion) {
     document.body.classList.add("reduced-motion");
@@ -1048,3 +1051,4 @@
     return String(v).padStart(2, "0");
   }
 })();
+
