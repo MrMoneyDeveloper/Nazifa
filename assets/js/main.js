@@ -1,5 +1,5 @@
 ﻿(() => {
-  const BUILD_ID = "20260213r7";
+  const BUILD_ID = "20260213r8";
   const TOTAL_PHOTOS = 46;
   const BASE_MS = 3800;
   const SPECIAL_MS = 5200;
@@ -226,6 +226,7 @@
     section.dataset.sceneType = "photo";
     section.dataset.photoIndex = String(item.photoIndex);
     section.dataset.photoCount = String(item.photoIndexes.length);
+    section.classList.add(`layout-${Math.min(item.photoIndexes.length, 3)}`);
 
     const media = document.createElement("div");
     media.className = "scene-media";
