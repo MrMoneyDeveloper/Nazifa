@@ -1,5 +1,5 @@
 ﻿(() => {
-  const BUILD_ID = "20260213r4";
+  const BUILD_ID = "20260213r7";
   const TOTAL_PHOTOS = 46;
   const BASE_MS = 3800;
   const SPECIAL_MS = 5200;
@@ -96,6 +96,8 @@
   const restartBtn = q("restartSlideshow");
   const exitBtn = q("exitSlideshow");
   const speedSel = q("playbackSpeed");
+  const controlDock = q("controlDock");
+  const controlMenuToggle = q("controlMenuToggle");
   const control = q("musicControl");
   const replayMusicBtn = q("replayMusic");
   const backTopBtn = q("backToTop");
@@ -122,6 +124,7 @@
   let timer = null;
   let locked = false;
   let playerMode = false;
+  let controlOpen = false;
   let bootReady = false;
   let started = localStorage.getItem(STARTED_KEY) === "true";
   const usedEffects = new Set();
@@ -288,6 +291,9 @@
     const content = document.createElement("div");
     content.className = "scene-content container-fluid";
 
+    const stage = document.createElement("div");
+    stage.className = "scene-stage";
+
     const counter = document.createElement("span");
     counter.className = "scene-counter";
     counter.textContent = item.counterLabel;
@@ -310,9 +316,10 @@
     }
 
     frame.appendChild(gallery);
-    media.append(bg, frame, grad);
+    stage.appendChild(frame);
+    media.append(bg, grad);
     shell.appendChild(cap);
-    content.append(counter, shell);
+    content.append(counter, stage, shell);
     section.append(media, content);
 
     return section;
@@ -410,6 +417,20 @@
       );
   }
   function bindUi() {
+    if (controlMenuToggle) {
+      controlMenuToggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (!bootReady || (!started && state === "idle")) return;
+        setControlOpen(!controlOpen);
+      });
+    }
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!controlOpen || !controlDock) return;
+      if (controlDock.contains(event.target)) return;
+      setControlOpen(false);
+    });
+
     heroStart.addEventListener("click", async () => {
       if (!bootReady) return;
       if (state === "playing") {
@@ -431,6 +452,7 @@
         } else {
           await startSlideshow({ fromBeginning: true });
         }
+        setControlOpen(false);
       });
     }
 
@@ -438,12 +460,14 @@
       restartBtn.addEventListener("click", async () => {
         if (!bootReady) return;
         await restartSlideshow();
+        setControlOpen(false);
       });
     }
 
     if (exitBtn) {
       exitBtn.addEventListener("click", () => {
         exitSlideshow();
+        setControlOpen(false);
       });
     }
 
@@ -856,15 +880,28 @@
   }
 
   function revealControl() {
-    if (control) control.classList.add("is-visible");
+    if (controlDock) controlDock.classList.add("is-visible");
   }
 
   function showEndOverlay() {
     if (endOverlay) endOverlay.hidden = false;
+    setControlOpen(true);
   }
 
   function hideEndOverlay() {
     if (endOverlay) endOverlay.hidden = true;
+    setControlOpen(false);
+  }
+
+  function setControlOpen(next) {
+    controlOpen = Boolean(next);
+    if (controlDock) {
+      controlDock.classList.toggle("is-open", controlOpen);
+      controlDock.classList.toggle("is-visible", started || state !== "idle");
+    }
+    if (controlMenuToggle) {
+      controlMenuToggle.setAttribute("aria-expanded", controlOpen ? "true" : "false");
+    }
   }
 
   function syncUi() {
@@ -887,14 +924,24 @@
       }
     }
 
+    if (controlDock) {
+      const controlVisible = started || state !== "idle";
+      controlDock.classList.toggle("is-visible", controlVisible);
+      if (!controlVisible && controlOpen) {
+        setControlOpen(false);
+      }
+    }
+
     if (control) {
-      control.classList.toggle("is-visible", started || state !== "idle");
       control.classList.toggle("is-paused", !playing);
     }
 
     if (restartBtn) restartBtn.disabled = booting;
     if (speedSel) speedSel.disabled = booting || state === "idle";
     if (exitBtn) exitBtn.disabled = booting || state === "idle";
+    if (controlMenuToggle) {
+      controlMenuToggle.disabled = booting || (!started && state === "idle");
+    }
   }
 
   async function preloadImagesSequentially() {

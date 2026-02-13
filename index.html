@@ -7,8 +7,8 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>Valentine Story</title>
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css?v=20260213r4" />
-  <link rel="stylesheet" href="assets/css/style.css?v=20260213r4" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css?v=20260213r7" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260213r7" />
 </head>
 <body class="overlay-open">
   <div id="bootLoader" class="boot-loader" role="status" aria-live="polite">
@@ -16,7 +16,7 @@
       <p class="boot-loader-kicker mb-2">Preparing your slideshow</p>
       <h2 class="boot-loader-title mb-3">Loading the experience...</h2>
       <p id="bootLoaderStatus" class="boot-loader-status mb-3">Loading memories from top to bottom...</p>
-      <p class="boot-loader-build mb-3">Build 20260213r4</p>
+      <p class="boot-loader-build mb-3">Build 20260213r7</p>
       <div class="boot-loader-progress" aria-hidden="true">
         <span id="bootLoaderBar"></span>
       </div>
@@ -26,7 +26,7 @@
   <div class="ambient-layer" aria-hidden="true"></div>
 
   <audio id="bgMusic" loop preload="auto">
-    <source src="assets/sounds/Past%20Won%27t%20Leave%20My%20Bed.mp3?v=20260213r4" type="audio/mpeg" />
+    <source src="assets/sounds/Past%20Won%27t%20Leave%20My%20Bed.mp3?v=20260213r7" type="audio/mpeg" />
   </audio>
 
   <main id="story" class="story">
@@ -65,16 +65,19 @@
     </section>
   </main>
 
-  <div class="music-control" id="musicControl" aria-label="Slideshow controls">
-    <button id="musicToggle" class="btn btn-control" type="button" aria-label="Pause music">Pause</button>
-    <button id="restartSlideshow" class="btn btn-control btn-ghost" type="button" aria-label="Restart slideshow">Restart slideshow</button>
-    <button id="exitSlideshow" class="btn btn-control btn-ghost" type="button" aria-label="Exit slideshow">Exit</button>
-    <label class="visually-hidden" for="playbackSpeed">Playback speed</label>
-    <select id="playbackSpeed" class="control-speed" aria-label="Playback speed">
-      <option value="0.75" selected>1x</option>
-      <option value="1">1.25x</option>
-      <option value="1.25">1.5x</option>
-    </select>
+  <div class="control-dock" id="controlDock">
+    <button id="controlMenuToggle" class="btn control-menu-btn" type="button" aria-expanded="false" aria-controls="musicControl" aria-label="Show controls">&#9776;</button>
+    <div class="music-control" id="musicControl" aria-label="Slideshow controls">
+      <button id="musicToggle" class="btn btn-control" type="button" aria-label="Pause music">Pause</button>
+      <button id="restartSlideshow" class="btn btn-control btn-ghost" type="button" aria-label="Restart slideshow">Restart slideshow</button>
+      <button id="exitSlideshow" class="btn btn-control btn-ghost" type="button" aria-label="Exit slideshow">Exit</button>
+      <label class="visually-hidden" for="playbackSpeed">Playback speed</label>
+      <select id="playbackSpeed" class="control-speed" aria-label="Playback speed">
+        <option value="0.75" selected>1x</option>
+        <option value="1">1.25x</option>
+        <option value="1.25">1.5x</option>
+      </select>
+    </div>
   </div>
 
   <div id="endOverlay" class="experience-overlay" hidden>
@@ -89,9 +92,9 @@
     </div>
   </div>
 
-  <script src="assets/js/vendor/canvas-confetti.min.js?v=20260213r4"></script>
-  <script src="assets/js/vendor/anime.min.js?v=20260213r4"></script>
-  <script src="assets/js/main.js?v=20260213r4"></script>
+  <script src="assets/js/vendor/canvas-confetti.min.js?v=20260213r7"></script>
+  <script src="assets/js/vendor/anime.min.js?v=20260213r7"></script>
+  <script src="assets/js/main.js?v=20260213r7"></script>
 </body>
 </html>
 
